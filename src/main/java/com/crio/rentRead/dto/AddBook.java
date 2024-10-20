@@ -1,7 +1,9 @@
 package com.crio.rentRead.dto;
 
 import jakarta.validation.constraints.NotBlank;
+import lombok.Data;
 
+@Data
 public class AddBook {
     @NotBlank(message = "title is required")
     private String title;
@@ -9,6 +11,6 @@ public class AddBook {
     @NotBlank(message = "author is required")
     private String author;
 
-    @NotBlank(message = "Genre is required")
+    @NotBlank(message = "genre is required")
     private String Genre;
 }
