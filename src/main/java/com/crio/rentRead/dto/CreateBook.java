@@ -15,4 +15,6 @@ public class CreateBook {
     private String Genre;
 
     private int copiesAvailable;
+
+    public CreateBook() {}
 }
