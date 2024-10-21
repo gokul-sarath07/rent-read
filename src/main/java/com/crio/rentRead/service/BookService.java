@@ -9,4 +9,5 @@ public interface BookService {
     Book registerBook(CreateBook book);
     Book getBook(Long bookId);
     List<Book> getAllBook();
+    Book save(Book book);
 }
