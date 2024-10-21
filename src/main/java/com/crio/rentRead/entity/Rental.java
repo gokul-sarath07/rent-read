@@ -4,9 +4,9 @@ import com.crio.rentRead.constants.RentalStatus;
 import jakarta.persistence.*;
 import lombok.Data;
 
+@Data
 @Entity
 @Table(name = "Rentals")
-@Data
 public class Rental {
 
         @Id
