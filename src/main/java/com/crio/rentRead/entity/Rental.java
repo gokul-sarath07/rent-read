@@ -4,6 +4,8 @@ import com.crio.rentRead.constants.RentalStatus;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.time.LocalDateTime;
+
 @Data
 @Entity
 @Table(name = "Rentals")
@@ -17,12 +19,16 @@ public class Rental {
         @JoinColumn(name = "userId", nullable = false)
         private User user;
 
-        @ManyToOne(optional = false)
+        @ManyToOne(optional = false, cascade = CascadeType.MERGE)
         @JoinColumn(name = "bookId", nullable = false)
         private Book book;
 
+        private LocalDateTime rentalDate = LocalDateTime.now();
+
         @Enumerated(EnumType.STRING)
         private RentalStatus rentalStatus = RentalStatus.ACTIVE;
+
+        private LocalDateTime returnDate;
 
         public Rental() {}
 }
