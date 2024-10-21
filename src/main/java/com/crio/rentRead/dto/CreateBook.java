@@ -4,7 +4,7 @@ import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 
 @Data
-public class AddBook {
+public class CreateBook {
     @NotBlank(message = "title is required")
     private String title;
 
@@ -13,4 +13,6 @@ public class AddBook {
 
     @NotBlank(message = "genre is required")
     private String Genre;
+
+    private int copiesAvailable;
 }
