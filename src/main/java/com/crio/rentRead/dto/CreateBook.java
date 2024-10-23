@@ -12,7 +12,7 @@ public class CreateBook {
     private String author;
 
     @NotBlank(message = "genre is required")
-    private String Genre;
+    private String genre;
 
     private int copiesAvailable;
 
