@@ -13,6 +13,6 @@ import java.util.Optional;
 public interface RentalRepository extends JpaRepository<Rental, Long> {
     int countByUserAndRentalStatus(User user, RentalStatus status);
 
-    @Query("SELECT r FROM Rental r WHERE r.user.userId = ?1 AND r.book.bookId = ?2 AND r.rentalStatus = ?3")
-    Optional<Rental> findByUserIdAndBookIdAndStatus(Long userId, Long bookId, RentalStatus status);
+    @Query("SELECT r FROM Rental r WHERE r.user.email = ?1 AND r.book.bookId = ?2 AND r.rentalStatus = ?3")
+    Optional<Rental> findByUserEmailAndBookIdAndStatus(String email, Long bookId, RentalStatus status);
 }
