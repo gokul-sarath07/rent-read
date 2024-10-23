@@ -1,7 +1,6 @@
 package com.crio.rentRead.controller;
 
 import com.crio.rentRead.dto.CreateUser;
-import com.crio.rentRead.dto.LoginUser;
 import com.crio.rentRead.entity.User;
 import com.crio.rentRead.service.UserService;
 import jakarta.validation.Valid;
@@ -14,7 +13,6 @@ import java.util.List;
 import static com.crio.rentRead.config.PathConstants.*;
 
 @RestController
-@RequestMapping(API_BASE_PATH)
 public class UserController {
 
     @Autowired
@@ -28,13 +26,6 @@ public class UserController {
         return ResponseEntity.ok(user);
     }
 
-    @PostMapping(LOGIN_USER)
-    public ResponseEntity<String> loginUser(@Valid @RequestBody LoginUser loginUser) {
-        userService.loginUser(loginUser);
-
-        return ResponseEntity.ok("User logged in.");
-    }
-
     @GetMapping(GET_ALL_USER)
     public ResponseEntity<List<User>> getAllUser() {
         List<User> users = userService.getAllUser();
@@ -45,6 +36,13 @@ public class UserController {
     @GetMapping(GET_A_USER)
     public ResponseEntity<User> getUser(@PathVariable("userId") Long userId) {
         User user = userService.getUser(userId);
+
+        return ResponseEntity.ok(user);
+    }
+
+    @PutMapping(UPDATE_USER_ROLE)
+    public ResponseEntity<User> updateUserRole(@PathVariable("userId") Long userId, @RequestParam(required = true) String role) {
+        User user = userService.updateRole(userId, role);
 
         return ResponseEntity.ok(user);
     }

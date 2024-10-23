@@ -13,7 +13,6 @@ import java.util.List;
 import static com.crio.rentRead.config.PathConstants.*;
 
 @RestController
-@RequestMapping(API_BASE_PATH)
 public class BookController {
 
     @Autowired
