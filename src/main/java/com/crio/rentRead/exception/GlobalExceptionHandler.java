@@ -2,6 +2,8 @@ package com.crio.rentRead.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.security.core.AuthenticationException;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -33,37 +35,42 @@ public class GlobalExceptionHandler {
     }
 
     @ExceptionHandler(BookAlreadyRentedException.class)
-    public String handleBookAlreadyRentedException(BookAlreadyRentedException ex) {
-        return ex.getMessage();
+    public ResponseEntity<String> handleBookAlreadyRentedException(BookAlreadyRentedException ex) {
+        return new ResponseEntity<>(ex.getMessage(), HttpStatus.CONFLICT);
     }
 
     @ExceptionHandler(BookNotFoundException.class)
-    public String handleBookNotFoundException(BookNotFoundException ex) {
-        return ex.getMessage();
+    public ResponseEntity<String> handleBookNotFoundException(BookNotFoundException ex) {
+        return new ResponseEntity<>(ex.getMessage(), HttpStatus.NOT_FOUND);
     }
 
     @ExceptionHandler(MaxActiveRentalsExceededException.class)
-    public String handleMaxActiveRentalsExceededException(MaxActiveRentalsExceededException ex) {
-        return ex.getMessage();
+    public ResponseEntity<String> handleMaxActiveRentalsExceededException(MaxActiveRentalsExceededException ex) {
+        return new ResponseEntity<>(ex.getMessage(), HttpStatus.CONFLICT);
     }
 
     @ExceptionHandler(RentalNotFoundException.class)
-    public String handleRentalNotFoundException(RentalNotFoundException ex) {
-        return ex.getMessage();
+    public ResponseEntity<String> handleRentalNotFoundException(RentalNotFoundException ex) {
+        return new ResponseEntity<>(ex.getMessage(), HttpStatus.NOT_FOUND);
     }
 
     @ExceptionHandler(UserEmailAlreadyExistsException.class)
-    public String handleUserEmailAlreadyExistsException(UserEmailAlreadyExistsException ex) {
-        return ex.getMessage();
+    public ResponseEntity<String> handleUserEmailAlreadyExistsException(UserEmailAlreadyExistsException ex) {
+        return new ResponseEntity<>(ex.getMessage(), HttpStatus.CONFLICT);
     }
 
     @ExceptionHandler(UserNotFoundException.class)
-    public String handleUserNotFoundException(UserNotFoundException ex) {
-        return ex.getMessage();
+    public ResponseEntity<String> handleUserNotFoundException(UserNotFoundException ex) {
+        return new ResponseEntity<>(ex.getMessage(), HttpStatus.NOT_FOUND);
     }
 
     @ExceptionHandler(IllegalArgumentException.class)
     public ResponseEntity<String> handleIllegalArgumentException(IllegalArgumentException ex) {
         return new ResponseEntity<>(ex.getMessage(), HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(AuthenticationException.class)
+    public ResponseEntity<String> handleAuthenticationException(AuthenticationException ex) {
+        return new ResponseEntity<>("Invalid username or password.", HttpStatus.BAD_REQUEST);
     }
 }
