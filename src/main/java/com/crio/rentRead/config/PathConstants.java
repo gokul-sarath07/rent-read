@@ -1,20 +1,23 @@
 package com.crio.rentRead.config;
 
 public class PathConstants {
+//  Base Paths
     public static final String API_BASE_PATH = "/api/v1";
+    public static final String USER_BASE_PATH = API_BASE_PATH + "/users";
+    public static final String BOOK_BASE_PATH = API_BASE_PATH + "/books";
 
-// User Paths
-    public static final String REGISTER_USER = "/user/register";
-    public static final String LOGIN_USER = "/user/login";
-    public static final String GET_ALL_USER = "/user";
-    public static final String GET_A_USER = "/user/{userId}";
+//  User Paths
+    public static final String REGISTER_USER = USER_BASE_PATH + "/register";
+    public static final String GET_ALL_USER = USER_BASE_PATH + "/all";
+    public static final String GET_A_USER = USER_BASE_PATH + "/{userId}";
+    public static final String UPDATE_USER_ROLE = USER_BASE_PATH + "/{userId}/role";
 
-// Book Paths
-    public static final String REGISTER_BOOK = "/book/register";
-    public static final String GET_ALL_BOOK = "/book";
-    public static final String GET_A_BOOK = "/book/{bookId}";
+//  Book Paths
+    public static final String REGISTER_BOOK = BOOK_BASE_PATH + "/register";
+    public static final String GET_ALL_BOOK = BOOK_BASE_PATH + "/all";
+    public static final String GET_A_BOOK = BOOK_BASE_PATH + "/{bookId}";
 
-// Rental Paths
-    public static final String RENT_BOOK = "/rental/rent";
-    public static final String RETURN_BOOK = "/rental/return";
+//  Rental Paths
+    public static final String RENT_BOOK = BOOK_BASE_PATH + "/{bookId}/rent";
+    public static final String RETURN_BOOK = BOOK_BASE_PATH + "/{bookId}/return";
 }
